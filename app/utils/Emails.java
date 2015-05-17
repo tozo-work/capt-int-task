@@ -11,17 +11,17 @@ import com.typesafe.config.ConfigFactory;
 
 public class Emails {
 
-	public static void sendMail(Contact contact) {
-		Config mailConfig = ConfigFactory.load("mail.conf");
-		
-		Email email = new Email();
-		email.setSubject(mailConfig.getString("mail.subject"));
-		email.setFrom(mailConfig.getString("mail.from"));
-		
-		Html emailBody = body.render(contact);
-		email.setBodyHtml(emailBody.body());
+    public static void sendMail(Contact contact) {
+        Config mailConfig = ConfigFactory.load("mail.conf");
 
-		email.addTo(mailConfig.getString("mail.to"));
-		MailerPlugin.send(email);
-	}
+        Email email = new Email();
+        email.setSubject(mailConfig.getString("mail.subject"));
+        email.setFrom(mailConfig.getString("mail.from"));
+
+        Html emailBody = body.render(contact);
+        email.setBodyHtml(emailBody.body());
+
+        email.addTo(mailConfig.getString("mail.to"));
+        MailerPlugin.send(email);
+    }
 }
